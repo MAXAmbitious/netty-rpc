@@ -1,4 +1,4 @@
-package com.beidao.netty.dubbo.facade.api;
+package com.beidao.netty.dubbo.facade.api.message;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @author beidao
  *
  */
-public class DubboRequest implements Serializable{
+public class DubboRequestMessage implements Serializable{
 
 	private static final long serialVersionUID = 422805234202183587L;
     private Class<?> interfaceClass;
@@ -16,7 +16,7 @@ public class DubboRequest implements Serializable{
     private Class<?>[] paramTypes;
     private Object[] args;
     
-    public DubboRequest(Class<?> interfaceClass, String methodName, Class<?>[] paramTypes, Object[] args) {
+    public DubboRequestMessage(Class<?> interfaceClass, String methodName, Class<?>[] paramTypes, Object[] args) {
 
         this.interfaceClass = interfaceClass;
         this.methodName = methodName;

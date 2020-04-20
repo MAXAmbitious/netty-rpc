@@ -18,12 +18,12 @@ public class UserFacade implements IUserFacade {
 		return "I love you, " + id;
 	}
 
-	public UserDTO getUserDTO(Long id) {
-		UserDTO userDTO = new UserDTO();
-		userDTO.setId(id);
-		userDTO.setName("北国的候鸟");
-		userDTO.setCreatedDate(new Date());
-		return userDTO;
+	public UserDTO getUserDTO(UserDTO userDTO) {
+		UserDTO resultUserDTO = new UserDTO();
+		resultUserDTO.setId(userDTO.getId());
+		resultUserDTO.setName("北国的候鸟");
+		resultUserDTO.setCreatedDate(new Date());
+		return resultUserDTO;
 	}
 
 }

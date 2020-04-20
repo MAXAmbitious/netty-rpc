@@ -2,8 +2,9 @@ package com.beidao.netty.dubbo.sever;
 
 import java.lang.reflect.Method;
 
-import com.beidao.netty.dubbo.facade.api.DubboRequest;
 import com.beidao.netty.dubbo.facade.api.IUserFacade;
+import com.beidao.netty.dubbo.facade.api.message.DubboRequestMessage;
+import com.beidao.netty.dubbo.facade.api.message.DubboResponseMessage;
 import com.beidao.netty.dubbo.facade.impl.UserFacade;
 
 import io.netty.channel.ChannelHandlerContext;
@@ -19,7 +20,7 @@ public class DubboServerHandler extends ChannelInboundHandlerAdapter {
 	@Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("服务端收到消息:   " + msg);
-        DubboRequest req = (DubboRequest) msg;
+        DubboRequestMessage req = (DubboRequestMessage) msg;
         // 1. 根据类名返回对象
         Object target = this.getInstenceByInterfaceClass(req.getInterfaceClass());
         // 2. 获取方法名
@@ -30,8 +31,10 @@ public class DubboServerHandler extends ChannelInboundHandlerAdapter {
         // 5. 获取参数值
         //调用方法 获取返回值
         Object res = method.invoke(target, req.getArgs());
+        DubboResponseMessage response = new DubboResponseMessage();
+        response.setResult(res);
         // 写回给调用端
-        ctx.writeAndFlush(res);
+        ctx.writeAndFlush(response);
     }
 
     @Override

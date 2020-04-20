@@ -19,6 +19,6 @@ public interface IUserFacade {
 	 * @param id
 	 * @return
 	 */
-	public UserDTO getUserDTO(Long id);
+	public UserDTO getUserDTO(UserDTO userDTO);
 
 }

@@ -20,7 +20,10 @@ public class UserClientTest extends TestCase{
 	 * 获取用户
 	 */
 	public void getUser() {
-		UserDTO userDTO = userFacade.getUserDTO(1L);
+		System.out.println("开始调用getUser");
+		UserDTO queryDto = new UserDTO();
+		queryDto.setId(1L);
+		UserDTO userDTO = userFacade.getUserDTO(queryDto);
 		System.out.println(JSON.toJSONString(userDTO));
 	}
 	
